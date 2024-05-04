@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Films List</title>
+</head>
+<body>
+    <h1>Films List</h1>
+    <h2><a href='..'>Главная</a> <a href='/films/cats/'>film1</a> <a href='/films/dogs/'>film2</a></h2>
+    <h1>Add Film:</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add</button>
+    </form>
+
+    <h2>Films</h2>
+    <ul>
+        {% for film in films %}
+            <li>{{ film.title }} - {{ film.genre }} - {{ film.director }} - {{ film.release_date }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_film' %}">Add Film</a>
+</body>
+</html>
